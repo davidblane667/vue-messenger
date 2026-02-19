@@ -1,4 +1,6 @@
-// Переменные доступны через additionalData в vite.config.ts
+// Переменные нужны здесь явно: _mixins.scss загружается Sass как модуль,
+// additionalData от Vite к нему не применяется.
+@use 'variables' as *;
 
 @mixin mobile {
   @media (max-width: $mobile-breakpoint) {
