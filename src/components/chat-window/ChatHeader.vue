@@ -1,14 +1,23 @@
 <script setup lang="ts">
+  import { useRouter } from 'vue-router'
   import type { User } from '@/types'
+  import { useBreakpoint } from '@/composables/useBreakpoint'
   import BaseAvatar from '@/components/ui/BaseAvatar.vue'
   import StatusDot from '@/components/ui/StatusDot.vue'
 
   defineProps<{ user: User }>()
+
+  const router = useRouter()
+  const { isMobile } = useBreakpoint()
+
+  function goBack() {
+    router.push('/chats')
+  }
 </script>
 
 <template>
   <header class="chat-header">
-    <!-- Кнопка «Назад» для мобильного — добавляется в F14 -->
+    <button v-if="isMobile" class="chat-header__back" title="Назад" @click="goBack">←</button>
     <BaseAvatar :name="user.name" :size="38" />
     <div class="chat-header__info">
       <span class="chat-header__name">{{ user.name }}</span>
@@ -32,6 +41,23 @@
     border-bottom: 1px solid $color-border;
     background: $color-surface;
     flex-shrink: 0;
+
+    &__back {
+      font-size: 1.25rem;
+      color: $color-primary;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background $transition-fast;
+      flex-shrink: 0;
+
+      &:hover {
+        background: rgba($color-primary, 0.08);
+      }
+
+      @include desktop {
+        display: none;
+      }
+    }
 
     &__info {
       display: flex;

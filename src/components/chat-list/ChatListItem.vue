@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import { useRouter } from 'vue-router'
   import type { User, Message } from '@/types'
+  import { useBreakpoint } from '@/composables/useBreakpoint'
   import BaseAvatar from '@/components/ui/BaseAvatar.vue'
   import StatusDot from '@/components/ui/StatusDot.vue'
   import BaseBadge from '@/components/ui/BaseBadge.vue'
@@ -12,7 +14,17 @@
     unreadCount: number
   }>()
 
-  defineEmits<{ select: [] }>()
+  const emit = defineEmits<{ select: [] }>()
+
+  const router = useRouter()
+  const { isMobile } = useBreakpoint()
+
+  function handleSelect() {
+    emit('select')
+    if (isMobile.value) {
+      router.push(`/chat/${props.user.id}`)
+    }
+  }
 
   const previewText = computed(() => {
     if (!props.lastMessage) return 'Нет сообщений'
@@ -30,7 +42,7 @@
 </script>
 
 <template>
-  <div class="chat-item" :class="{ 'chat-item--active': isActive }" @click="$emit('select')">
+  <div class="chat-item" :class="{ 'chat-item--active': isActive }" @click="handleSelect()">
     <div class="chat-item__avatar-wrap">
       <BaseAvatar :name="user.name" :size="44" />
       <StatusDot :status="user.status" :size="12" class="chat-item__dot" />

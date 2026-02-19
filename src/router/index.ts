@@ -2,14 +2,24 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import ChatListView from '@/views/ChatListView.vue'
 import ChatView from '@/views/ChatView.vue'
+import { MOBILE_BREAKPOINT } from '@/constants'
 
-// Мобильный guard (redirect /→/chats) добавляется в F14
+const isMobile = () => window.innerWidth <= MOBILE_BREAKPOINT
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
       component: AppLayout,
+      // На мобильном desktop-layout не нужен — редирект на список чатов
+      beforeEnter: (_to, _from, next) => {
+        if (isMobile()) {
+          next('/chats')
+        } else {
+          next()
+        }
+      },
     },
     {
       path: '/chats',
