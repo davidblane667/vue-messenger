@@ -1,0 +1,40 @@
+// Переменные доступны через additionalData в vite.config.ts
+
+@mixin mobile {
+  @media (max-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: calc($mobile-breakpoint + 1px)) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-border;
+    border-radius: 2px;
+  }
+}
