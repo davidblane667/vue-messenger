@@ -2,6 +2,20 @@
 
 SPA-мессенджер на Vue 3 + TypeScript + Pinia.
 
+## Скриншоты
+
+### Десктоп
+
+| Список чатов | Открытый чат | Ввод сообщения |
+|---|---|---|
+| ![Список чатов](./screenshots/desktop-chat-list.png) | ![Открытый чат](./screenshots/desktop-chat-open.png) | ![Ввод сообщения](./screenshots/desktop-message-input.png) |
+
+### Мобильный
+
+| Список чатов | Открытый чат |
+|---|---|
+| ![Мобильный список](./screenshots/mobile-chat-list.png) | ![Мобильный чат](./screenshots/mobile-chat-open.png) |
+
 ## Стек
 
 - **Vue 3** (Composition API, `<script setup>`)
