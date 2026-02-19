@@ -1,0 +1,9 @@
+export const CURRENT_USER_ID = 0
+export const CHAT_LIST_LIMIT = 5
+export const HISTORY_MIN = 20
+export const HISTORY_MAX = 30
+export const AUTO_REPLY_MIN_MS = 1000
+export const AUTO_REPLY_MAX_MS = 2000
+export const AUTO_REPLY_TEXT = 'Спасибо за сообщение!)'
+export const STATUS_CHANGE_PROBABILITY = 0.3
+export const MOBILE_BREAKPOINT = 768
